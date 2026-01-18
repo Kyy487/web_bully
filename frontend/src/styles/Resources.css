@@ -1,0 +1,215 @@
+.resources-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 16px;
+}
+
+.motivation-banner {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 60px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.motivation-content {
+  h2 {
+    color: white;
+    margin-bottom: 16px;
+  }
+
+  .motivation-text {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 24px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+  }
+
+  .refresh-btn {
+    background-color: white;
+    color: var(--primary-color);
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+.resources-section {
+  margin-bottom: 60px;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    color: var(--text-dark);
+
+    svg {
+      color: var(--primary-color);
+      font-size: 28px;
+    }
+  }
+}
+
+.support-grid,
+.coping-grid,
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.support-card,
+.coping-card,
+.education-card {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  h3 {
+    color: var(--text-dark);
+    margin-bottom: 12px;
+  }
+
+  .description,
+  .advice {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .advice {
+    background-color: var(--light-bg);
+    padding: 12px;
+    border-left: 3px solid var(--primary-color);
+    border-radius: 4px;
+    margin-top: 12px;
+  }
+}
+
+.tips-list {
+  list-style: none;
+  margin-top: 12px;
+
+  li {
+    margin-bottom: 10px;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.6;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* FAQ Section */
+.faq-section {
+  margin-bottom: 40px;
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-item {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  &.expanded {
+    border-color: var(--primary-color);
+  }
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+
+  h3 {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: 16px;
+  }
+
+  .faq-toggle {
+    font-size: 24px;
+    color: var(--primary-color);
+    font-weight: 300;
+    transition: transform 0.3s ease;
+  }
+}
+
+.faq-answer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--light-bg);
+  animation: slideDown 0.3s ease;
+
+  p {
+    margin: 0;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .support-grid,
+  .coping-grid,
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .motivation-banner {
+    padding: 20px;
+
+    .motivation-text {
+      font-size: 16px;
+    }
+  }
+}

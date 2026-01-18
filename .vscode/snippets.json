@@ -1,0 +1,40 @@
+[
+  {
+    "name": "ES7+ React/Redux",
+    "scope": "javascript,javascriptreact",
+    "prefix": "rfc",
+    "body": [
+      "import React from 'react';",
+      "import './${1:ComponentName}.css';",
+      "",
+      "const ${1:ComponentName} = () => {",
+      "  return (",
+      "    <div className=\"${1:ComponentName}-container\">",
+      "      ${2:content}",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "Create a functional React component"
+  },
+  {
+    "name": "Import Statement",
+    "scope": "javascript,javascriptreact",
+    "prefix": "imp",
+    "body": [
+      "import ${1:name} from '${2:path}';"
+    ],
+    "description": "Create an import statement"
+  },
+  {
+    "name": "useState Hook",
+    "scope": "javascript,javascriptreact",
+    "prefix": "us",
+    "body": [
+      "const [${1:state}, set${1:State}] = useState(${2:initial});"
+    ],
+    "description": "Create useState hook"
+  }
+]

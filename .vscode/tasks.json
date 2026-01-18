@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Backend - Dev",
+    "description": "Run backend in development mode",
+    "type": "shell",
+    "label": "Backend: Dev",
+    "command": "npm",
+    "args": ["run", "dev"],
+    "options": {
+      "cwd": "${workspaceFolder}/backend"
+    },
+    "isBackground": true,
+    "problemMatcher": {
+      "pattern": {
+        "regexp": "^.*Error.*",
+        "file": 1,
+        "line": 2,
+        "message": 3
+      },
+      "background": {
+        "activeOnStart": true,
+        "beginsPattern": "^.*starting.*",
+        "endsPattern": "^.*listening.*"
+      }
+    }
+  },
+  {
+    "name": "Frontend - Dev",
+    "description": "Run frontend in development mode",
+    "type": "shell",
+    "label": "Frontend: Dev",
+    "command": "npm",
+    "args": ["start"],
+    "options": {
+      "cwd": "${workspaceFolder}/frontend"
+    },
+    "isBackground": true,
+    "problemMatcher": {
+      "pattern": {
+        "regexp": "^.*Error.*",
+        "file": 1,
+        "message": 2
+      },
+      "background": {
+        "activeOnStart": true,
+        "beginsPattern": "^.*starting.*",
+        "endsPattern": "^.*webpack.*"
+      }
+    }
+  },
+  {
+    "name": "Both: Backend & Frontend",
+    "description": "Run both backend and frontend",
+    "dependsOn": ["Backend: Dev", "Frontend: Dev"],
+    "problemMatcher": []
+  }
+]
