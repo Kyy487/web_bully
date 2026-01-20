@@ -22,7 +22,6 @@ export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
-  const [role, setRole] = useState("user")
   const { login } = useContext(AuthContext)
   const navigate = useNavigate()
 
@@ -35,19 +34,29 @@ export default function Login() {
       return
     }
 
-    const demoUser = DEMO_USERS[role]
-    
-    if (email === demoUser.email && password === demoUser.password) {
+    let foundUser = null
+    let userRole = null
+
+    // Check both user and admin credentials
+    if (email === DEMO_USERS.user.email && password === DEMO_USERS.user.password) {
+      foundUser = DEMO_USERS.user
+      userRole = "user"
+    } else if (email === DEMO_USERS.admin.email && password === DEMO_USERS.admin.password) {
+      foundUser = DEMO_USERS.admin
+      userRole = "admin"
+    }
+
+    if (foundUser) {
       const userData = {
         id: Date.now(),
-        email: demoUser.email,
-        name: demoUser.name,
-        role: demoUser.role
+        email: foundUser.email,
+        name: foundUser.name,
+        role: foundUser.role
       }
       login(userData)
-      navigate(role === "admin" ? "/admin" : "/dashboard")
+      navigate(userRole === "admin" ? "/admin" : "/dashboard")
     } else {
-      setError("Email atau password salah untuk role ini")
+      setError("Email atau password salah")
     }
   }
 
@@ -58,53 +67,7 @@ export default function Login() {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
             RuangPulih
           </h1>
-          <p className="text-slate-600">Login dengan Role User & Admin</p>
-        </div>
-
-        {/* ROLE SELECTOR */}
-        <div className="mb-8 flex gap-4">
-          <button
-            onClick={() => {
-              setRole("user")
-              setError("")
-            }}
-            className={`flex-1 py-3 rounded-xl font-semibold transition ${
-              role === "user"
-                ? "bg-blue-600 text-white"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-            }`}
-          >
-            👤 User
-          </button>
-          <button
-            onClick={() => {
-              setRole("admin")
-              setError("")
-            }}
-            className={`flex-1 py-3 rounded-xl font-semibold transition ${
-              role === "admin"
-                ? "bg-purple-600 text-white"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-            }`}
-          >
-            🔑 Admin
-          </button>
-        </div>
-
-        {/* DEMO CREDENTIALS */}
-        <div className="bg-amber-50 border-2 border-amber-300 p-4 rounded-xl mb-6">
-          <p className="text-sm font-semibold text-amber-900 mb-2">📋 Demo Credentials:</p>
-          {role === "user" ? (
-            <>
-              <p className="text-sm text-amber-800">Email: <code className="font-mono">user@example.com</code></p>
-              <p className="text-sm text-amber-800">Password: <code className="font-mono">user123</code></p>
-            </>
-          ) : (
-            <>
-              <p className="text-sm text-amber-800">Email: <code className="font-mono">admin@example.com</code></p>
-              <p className="text-sm text-amber-800">Password: <code className="font-mono">admin123</code></p>
-            </>
-          )}
+          <p className="text-slate-600">Platform Kesehatan Mental</p>
         </div>
 
         {/* ERROR MESSAGE */}
@@ -143,11 +106,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className={`w-full text-white py-3 rounded-xl font-semibold transition shadow-lg ${
-              role === "admin"
-                ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                : "bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700"
-            }`}
+            className="w-full text-white py-3 rounded-xl font-semibold transition shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
           >
             ➤ Masuk sebagai {role === "admin" ? "Admin" : "User"}
           </button>
