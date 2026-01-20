@@ -5,9 +5,9 @@ import { AuthContext } from "../context/AuthContext"
 export default function AdminDashboard() {
   const { user, logout } = useContext(AuthContext)
   const navigate = useNavigate()
-  const [totalUsers, setTotalUsers] = useState(5)
-  const [totalChats, setTotalChats] = useState(12)
-  const [totalStories, setTotalStories] = useState(8)
+  const [totalUsers] = useState(5)
+  const [totalChats] = useState(12)
+  const [totalStories] = useState(8)
   const [activeSection, setActiveSection] = useState("overview")
 
   const handleLogout = () => {
@@ -18,7 +18,7 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 flex">
       {/* SIDEBAR */}
-      <div className="w-64 bg-gradient-to-b from-purple-700 to-pink-700 text-white shadow-xl">
+      <div className="w-64 bg-gradient-to-b from-purple-700 to-pink-700 text-white shadow-xl flex flex-col">
         <div className="p-6 border-b border-white/20">
           <h2 className="text-2xl font-bold">🔑 RuangPulih</h2>
           <p className="text-sm text-purple-100 mt-1">Admin Panel</p>
@@ -32,7 +32,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* NAVIGATION MENU */}
-        <nav className="p-4 space-y-2">
+        <nav className="p-4 space-y-2 flex-1">
           <button
             onClick={() => setActiveSection("overview")}
             className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition ${
@@ -72,7 +72,7 @@ export default function AdminDashboard() {
         </nav>
 
         {/* LOGOUT BUTTON */}
-        <div className="p-4 border-t border-white/20 mt-auto">
+        <div className="p-4 border-t border-white/20">
           <button
             onClick={handleLogout}
             className="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg font-semibold transition"
@@ -92,93 +92,99 @@ export default function AdminDashboard() {
 
               {/* STATS CARDS */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-purple-600">
-            <div className="flex justify-between items-center">
-              <div>
-                <p className="text-slate-600 text-sm">Total Users</p>
-                <p className="text-4xl font-bold text-purple-600">{totalUsers}</p>
-              </div>
-              <div className="text-5xl">👥</div>
-            </div>
-          </div>
+                <div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-purple-600">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-slate-600 text-sm">Total Users</p>
+                      <p className="text-4xl font-bold text-purple-600">{totalUsers}</p>
+                    </div>
+                    <div className="text-5xl">👥</div>
+                  </div>
+                </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-pink-600">
-            <div className="flex justify-between items-center">
-              <div>
-                <p className="text-slate-600 text-sm">Pesan Chat</p>
-                <p className="text-4xl font-bold text-pink-600">{totalChats}</p>
-              </div>
-              <div className="text-5xl">💬</div>
-            </div>
-          </div>
+                <div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-pink-600">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-slate-600 text-sm">Pesan Chat</p>
+                      <p className="text-4xl font-bold text-pink-600">{totalChats}</p>
+                    </div>
+                    <div className="text-5xl">💬</div>
+                  </div>
+                </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-red-600">
-            <div className="flex justify-between items-center">
-              <div>
-                <p className="text-slate-600 text-sm">Cerita User</p>
-                <p className="text-4xl font-bold text-red-600">{totalStories}</p>
+                <div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-red-600">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-slate-600 text-sm">Cerita User</p>
+                      <p className="text-4xl font-bold text-red-600">{totalStories}</p>
+                    </div>
+                    <div className="text-5xl">📖</div>
+                  </div>
+                </div>
               </div>
-              <div className="text-5xl">📖</div>
-            </div>
-          </div>
-        </div>
 
-        {/* MAIN SECTIONS */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* QUICK ACTIONS */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-6">⚡ Aksi Cepat</h2>
-            <div className="space-y-4">
-              <Link
-                to="/admin/chat"
-                className="block p-4 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-xl hover:shadow-lg transition font-semibold"
-              >
-                💬 Kelola Chat User → {totalChats} Pesan
-              </Link>
-              <button className="w-full p-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:shadow-lg transition font-semibold">
-                👥 Lihat Semua User
-              </button>
-              <button className="w-full p-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:shadow-lg transition font-semibold">
-                📖 Review Cerita User
-              </button>
-            </div>
-          </div>
+              {/* MAIN SECTIONS */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* QUICK ACTIONS */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-slate-800 mb-6">⚡ Aksi Cepat</h2>
+                  <div className="space-y-4">
+                    <Link
+                      to="/admin/chat"
+                      className="block p-4 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-xl hover:shadow-lg transition font-semibold text-center"
+                    >
+                      💬 Kelola Chat User → {totalChats} Pesan
+                    </Link>
+                    <button 
+                      onClick={() => setActiveSection("users")}
+                      className="w-full p-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:shadow-lg transition font-semibold"
+                    >
+                      👥 Lihat Semua User
+                    </button>
+                    <button 
+                      onClick={() => setActiveSection("stories")}
+                      className="w-full p-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:shadow-lg transition font-semibold"
+                    >
+                      📖 Review Cerita User
+                    </button>
+                  </div>
+                </div>
 
-          {/* RECENT ACTIVITY */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-6">📊 Aktivitas Terbaru</h2>
-            <div className="space-y-4">
-              <div className="p-4 border-l-4 border-pink-500 bg-pink-50 rounded">
-                <p className="font-semibold text-slate-800">Pesan baru dari User</p>
-                <p className="text-sm text-slate-600">5 menit yang lalu</p>
+                {/* RECENT ACTIVITY */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-slate-800 mb-6">📊 Aktivitas Terbaru</h2>
+                  <div className="space-y-4">
+                    <div className="p-4 border-l-4 border-pink-500 bg-pink-50 rounded">
+                      <p className="font-semibold text-slate-800">Pesan baru dari User</p>
+                      <p className="text-sm text-slate-600">5 menit yang lalu</p>
+                    </div>
+                    <div className="p-4 border-l-4 border-blue-500 bg-blue-50 rounded">
+                      <p className="font-semibold text-slate-800">Cerita baru diunggah</p>
+                      <p className="text-sm text-slate-600">1 jam yang lalu</p>
+                    </div>
+                    <div className="p-4 border-l-4 border-purple-500 bg-purple-50 rounded">
+                      <p className="font-semibold text-slate-800">User baru mendaftar</p>
+                      <p className="text-sm text-slate-600">2 jam yang lalu</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="p-4 border-l-4 border-blue-500 bg-blue-50 rounded">
-                <p className="font-semibold text-slate-800">Cerita baru diunggah</p>
-                <p className="text-sm text-slate-600">1 jam yang lalu</p>
-              </div>
-              <div className="p-4 border-l-4 border-purple-500 bg-purple-50 rounded">
-                <p className="font-semibold text-slate-800">User baru mendaftar</p>
-                <p className="text-sm text-slate-600">2 jam yang lalu</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* INFO BOX */}
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-lg p-8 mt-8">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="text-4xl">📢</div>
-            <div>
-              <h3 className="text-2xl font-bold">Selamat Datang Admin!</h3>
-              <p className="text-purple-100">Anda memiliki akses penuh untuk mengelola sistem RuangPulih</p>
-            </div>
-          </div>
-          <div className="bg-white/20 border border-white/30 rounded-xl p-4 mt-4">
-            <p className="text-sm text-purple-100">
-              💡 <strong>Tips:</strong> Gunakan panel admin untuk membalas chat user, melihat cerita yang diunggah, dan memonitor aktivitas sistem. Setiap balasan Anda sangat membantu user dalam proses penyembuhan mereka.
-            </p>
-          </div>
-        </div>
+              {/* INFO BOX */}
+              <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-lg p-8 mt-8">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="text-4xl">📢</div>
+                  <div>
+                    <h3 className="text-2xl font-bold">Selamat Datang Admin!</h3>
+                    <p className="text-purple-100">Anda memiliki akses penuh untuk mengelola sistem RuangPulih</p>
+                  </div>
+                </div>
+                <div className="bg-white/20 border border-white/30 rounded-xl p-4 mt-4">
+                  <p className="text-sm text-purple-100">
+                    💡 <strong>Tips:</strong> Gunakan panel admin untuk membalas chat user, melihat cerita yang diunggah, dan memonitor aktivitas sistem. Setiap balasan Anda sangat membantu user dalam proses penyembuhan mereka.
+                  </p>
+                </div>
+              </div>
             </>
           )}
 
