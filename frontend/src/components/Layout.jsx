@@ -1,9 +1,11 @@
-import { useContext } from "react"
+import { useContext, useState, useRef } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
+import { AudioContext } from "../context/AudioContext"
 
 export default function Layout({ children }) {
   const { user, logout } = useContext(AuthContext)
+  const { isPlaying, toggleMusic } = useContext(AudioContext)
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -26,7 +28,7 @@ export default function Layout({ children }) {
       <aside className="w-64 bg-white/90 backdrop-blur-xl border-r border-slate-200 shadow-2xl flex flex-col justify-between sticky top-0">
         <div>
           <div className="p-6 text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wider flex items-center gap-2">
-            🌿 <span>RuangPulih</span>
+            🌿 <span>RuangCerita</span>
           </div>
 
           {/* USER INFO */}
@@ -66,8 +68,23 @@ export default function Layout({ children }) {
       </aside>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto relative">
         {children}
+        
+        {/* MUSIC PLAYER */}
+        <div className="fixed bottom-8 right-8 z-50">
+          <button
+            onClick={toggleMusic}
+            className={`w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 ${
+              isPlaying
+                ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white"
+                : "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+            }`}
+            title={isPlaying ? "Stop musik" : "Play musik"}
+          >
+            {isPlaying ? "⏸" : "▶"}
+          </button>
+        </div>
       </main>
     </div>
   )

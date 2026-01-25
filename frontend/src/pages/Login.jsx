@@ -106,7 +106,7 @@ export default function Login() {
           <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-sm text-indigo-700 mb-6">
             <p className="font-semibold mb-2">📋 Demo Akun</p>
             <p>👤 user@example.com / user123</p>
-            <p>👨‍⚕️ admin@example.com / admin123</p>
+            
           </div>
 
           {/* FORM */}

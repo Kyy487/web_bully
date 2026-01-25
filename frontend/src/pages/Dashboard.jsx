@@ -16,13 +16,26 @@ export default function Dashboard() {
     <Layout>
       <div className="p-10 space-y-8 max-w-7xl mx-auto">
         {/* HEADER */}
-        <div className="mb-10">
-          <h1 className="text-4xl font-bold text-slate-800 mb-2">
-            Selamat datang kembali 🌿
-          </h1>
-          <p className="text-slate-500 text-lg">
-            Kamu aman di sini. Tidak ada yang menghakimi, tidak ada yang menilai.
-          </p>
+        <div className="mb-10 relative">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-20 blur-3xl -z-10"></div>
+          <div className="absolute bottom-0 right-0 w-72 h-72 bg-gradient-to-br from-pink-200 to-red-200 rounded-full opacity-20 blur-3xl -z-10"></div>
+          
+          <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-3xl p-8 border border-blue-100 shadow-lg">
+            <div className="flex items-center justify-between">
+              <div className="flex-1">
+                <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">
+                  Selamat datang kembali 🌿
+                </h1>
+                <p className="text-slate-600 text-lg leading-relaxed max-w-2xl">
+                  Kamu aman di sini. Tidak ada yang menghakimi, tidak ada yang menilai. <br/>
+                  <span className="text-purple-600 font-semibold">Perjalanan penyembuhan dimulai dari sini.</span>
+                </p>
+              </div>
+              <div className="hidden lg:block text-8xl animate-bounce" style={{ animationDuration: '3s' }}>
+                🌸
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* QUOTE CARD */}

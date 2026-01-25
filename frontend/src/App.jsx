@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext, AuthProvider } from "./context/AuthContext"
+import { AudioProvider } from "./context/AudioContext"
 
 import Landing from "./pages/Landing"
 import Login from "./pages/Login"
@@ -127,7 +128,9 @@ function AppRoutes() {
 export default function App() {
   return (
     <AuthProvider>
-      <AppRoutes />
+      <AudioProvider>
+        <AppRoutes />
+      </AudioProvider>
     </AuthProvider>
   )
 }
